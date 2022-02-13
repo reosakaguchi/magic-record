@@ -1,0 +1,19 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= @record.magic_name %></h5>
+          <p class="card-text"><%= simple_format @record.body %></p>
+          <p class="card-text">
+            <small class="text-muted">更新日：<%= @record.updated_at.strftime("%Y-%m-%d") %></small>
+          </p>
+          <% if @record.user == current_user %>
+            <%= link_to '編集', edit_record_path(@record), class: "btn btn-success" %>
+            <%= link_to '削除', record_path(@record), method: :delete, class: "btn btn-danger" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

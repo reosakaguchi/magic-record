@@ -1,0 +1,12 @@
+ja:
+  enums:
+    record:
+      time:
+        less_than_one: '1分未満'
+        one_to_three: '1分以上3分未満'
+        three_to_ten: '3分以上10分未満'
+        ten_or_more: '10分以上'
+      audience:
+        family: '家族'
+        friends: '友達'
+        acquaintances: '知り合い'

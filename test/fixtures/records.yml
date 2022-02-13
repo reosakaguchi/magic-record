@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  magic_name: MyString
+  body: MyText
+  merit: MyText
+  demerit: MyText
+  consideration: MyText
+  user_id: 1
+
+two:
+  magic_name: MyString
+  body: MyText
+  merit: MyText
+  demerit: MyText
+  consideration: MyText
+  user_id: 1
