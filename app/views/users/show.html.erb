@@ -5,8 +5,8 @@
         <div class="card-body">
           <h5 class="card-title"><%= current_user.name %></h5>
           <h6 class="card-subtitle mb-2 text-muted"><%= current_user.email %></h6>
+          <h7><%= simple_format(current_user.gender_status_i18n) %></h5>
           <%= link_to 'ユーザー編集', edit_user_path %>
-          
           
         </div>
       </div>

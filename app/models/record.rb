@@ -6,7 +6,7 @@ class Record < ApplicationRecord
     validates :body
   end
   
-  enum time: { less_than_one: 0, one_to_three: 1, three_to_ten: 2, ten_or_more:3 }, _prefix: true
-  enum audience: { family: 0, friends: 1, acquaintances: 2}, _prefix: true
+  enum time_status: { less_than_one: 0, one_to_three: 1, three_to_ten: 2, ten_or_more:3 }
+  enum audience_status: { family: 0, friend: 1, acquaintance: 2}
 
 end

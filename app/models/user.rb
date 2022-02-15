@@ -6,4 +6,5 @@ class User < ApplicationRecord
   validates :name, presence: true
   
   has_many :records, dependent: :destroy
+  enum gender_status: { man: 0, woman: 1 }
 end

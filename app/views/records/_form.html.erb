@@ -4,11 +4,21 @@
     <%= f.text_field :magic_name, class: 'form-control' %>
   </div>
   <div class="form-group">
-    <label>どうだった？</label>
+    <label>どうでしたか？</label>
     <%= f.text_area :body, class: 'form-control' %>
   </div>
-
+  
+  <div class="form-group">
+    <label>演技時間はどの程度ですか？</label><br>
+    <%= f.select :time_status, Record.time_statuses.keys.map { |k| [t("enums.record.time_status.#{k}"),k]}, {}, {class: "custom-select w-25"} %>
+  </div>
+  
+  <div class="form-group">
+    <label>観客はどれに該当しますか？</label><br>
+    <%= f.select :audience_status, Record.audience_statuses.keys.map { |k| [t("enums.record.audience_status.#{k}"),k]}, {}, {class: "custom-select w-25"} %>
+  </div>
+  
   <div>
-  <%= f.submit class: "btn btn-success" %>
+    <%= f.submit '投稿する', class: "btn btn-success" %>
   </div>
 <% end %>
