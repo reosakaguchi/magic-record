@@ -48,6 +48,6 @@ class RecordsController < ApplicationController
   
   private
   def record_params
-    params.require(:record).permit(:magic_name, :body, :time_status, :audience_status)
+    params.require(:record).permit(:title, :magic_name, :body, :time_status, :audience_status)
   end
 end
