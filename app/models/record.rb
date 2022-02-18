@@ -1,9 +1,15 @@
 class Record < ApplicationRecord
   belongs_to :user
+  has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   
   with_options presence: true do
     validates :magic_name
     validates :body
+  end
+  
+  def favorited_by?(user)
+    favorites.where(user_id: user.id).exists?
   end
   
   enum time_status: { less_than_one: 0, one_to_three: 1, three_to_ten: 2, ten_or_more:3 }

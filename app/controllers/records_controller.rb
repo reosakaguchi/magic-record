@@ -6,6 +6,8 @@ class RecordsController < ApplicationController
 
   def show
     @record = Record.find(params[:id])
+    @comment = Comment.new
+    @comments = @record.comments
   end
   
   def new

@@ -5,14 +5,17 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">マジックレポート一覧</th>
-            <th scope="col">投稿者</th>
             <th scope="col">　</th>
+            <th scope="col">　</th>
+            <th scope="col">投稿者</th>
           </tr>
         </thead>
         <tbody>
           <% @records.each do |record| %>
             <tr>
               <td><%= link_to record.magic_name, record_path(record) %></td>
+              <td><%= record.favorites.count %>いいね</td>
+              <td><p class="caption"><%= "#{record.comments.count} コメント" %></p></td>
               <td><%= link_to record.user.name %></td>
             </tr>
           <% end %>

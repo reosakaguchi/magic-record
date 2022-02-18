@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   root to: "home#top"
   devise_for :users
-  resource :user, except: [:new, :create, :destroy]
-  resources :records
+  resources :users do
+    member do
+      get :follows, :followers
+    end
+    resource :relationships, only: [:create, :destroy]
+  end
+  resources :records do
+    resources :comments, only:[:create, :destroy]
+    resource :favorites, only:[:create, :destroy]
+  end
 end
