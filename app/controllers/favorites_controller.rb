@@ -4,7 +4,7 @@ class FavoritesController < ApplicationController
     record = Record.find(params[:record_id])
     favoirte = current_user.favorites.new(record_id: record.id)
     favoirte.save
-    redirect_to record_path(record)
+    redirect_back(fallback_location: root_path)
   end
   
   def destroy
