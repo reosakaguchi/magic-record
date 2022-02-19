@@ -1,6 +1,12 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-10 mx-auto">
+    <div class="row justify-content-end mb-3">
+      <%= form_with url: records_path, method: :get, local: true do |f| %>
+       <%= f.text_field :search %>
+       <%= f.submit '検索する', name: nil %>
+      <% end %>
+    </div>
       <table class="table table-hover">
         <thead class="thead-dark">
           <tr>

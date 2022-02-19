@@ -1,11 +1,16 @@
 class CommentsController < ApplicationController
   
   def create
-    record = Record.find(params[:record_id])
-    comment = current_user.comments.new(comment_params)
-    comment.record_id = record.id
-    comment.save
-    redirect_to record_path(record)
+    @record = Record.find(params[:record_id])
+    @comment = current_user.comments.new(comment_params)
+    @comment.record_id = @record.id
+    if @comment.save
+      redirect_to record_path(record)
+    else
+      @record = Record.find(params[:record_id])
+      @comments = @record.comments
+      render 'records/show'
+    end
   end
   
   def destroy

@@ -2,6 +2,7 @@ class RecordsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   def index
     @records = Record.all
+    @records = @records.where("title like? OR magic_name like? OR body like?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%") if params[:search].present?
   end
 
   def show

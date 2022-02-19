@@ -11,9 +11,6 @@
           <h6 class="card-subtitle mb-2 text-muted"><%= current_user.email %></h6>
           <h7><%= simple_format(current_user.gender_status_i18n) %></h5>
           <%= link_to 'ユーザー編集', edit_user_path %>
-          
-          
-          
            <p class="d-flex justify-content-end">
              <% if user_signed_in? && @user == current_user %>
                <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn-sm btn-success" %>
@@ -41,11 +38,6 @@
       </div>
     </div>
   </div>
-</div>
-
-
-<div class="container mt-5">
-  <div class="row">
     <div class="col-10 mx-auto">
       <table class="table table-hover">
         <thead class="thead-dark">
@@ -56,7 +48,6 @@
             <th scope="col">演じた相手</th>
             <th scope="col">いいね数</th>
             <th scope="col">コメント数</th>
-            <th scope="col">投稿者</th>
           </tr>
         </thead>
         <tbody>
@@ -68,10 +59,11 @@
               <td><%= record.time_status_i18n %></td>
               <td><%= "#{record.favorites.count}いいね" %></td>
               <td><p class="caption"><%= "#{record.comments.count} コメント" %></p></td>
-              <td><%= link_to record.user.name %></td>
             </tr>
           <% end %>
         </tbody>
       </div>
-    </div>
-  </div>
+</div>
+
+
+
