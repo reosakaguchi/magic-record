@@ -47,6 +47,10 @@ class RecordsController < ApplicationController
     redirect_to records_path
   end
   
+  def refinement
+    @records = Record.all
+  end
+  
   private
   def record_params
     params.require(:record).permit(:title, :magic_name, :body, :time_status, :audience_status)

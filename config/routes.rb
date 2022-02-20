@@ -10,5 +10,8 @@ Rails.application.routes.draw do
   resources :records do
     resources :comments, only:[:create, :destroy]
     resource :favorites, only:[:create, :destroy]
+    collection do
+      get 'refinement'
+    end
   end
 end
