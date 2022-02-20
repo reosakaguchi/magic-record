@@ -5,11 +5,11 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
     @comment.record_id = @record.id
     if @comment.save
-      redirect_to record_path(record)
+      redirect_to record_path(@record)
     else
       @record = Record.find(params[:record_id])
       @comments = @record.comments
-      render 'records/show'
+      redirect_to record_path(@record)
     end
   end
   

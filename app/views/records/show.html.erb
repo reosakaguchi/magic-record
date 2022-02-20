@@ -19,19 +19,12 @@
           <p class="card-text">
             <small class="text-muted">更新日：<%= @record.updated_at.strftime("%Y-%m-%d") %></small>
           </p>
-           <!--いいね機能--->
-            <% if @record.favorited_by?(current_user) %>
-              <%= link_to record_favorites_path(@record), method: :delete, class: "favorite_btn" do %>
-                <i class="fas fa-heart"></i>
-                <%= @record.favorites.count %> いいね
-              <% end %>
-            <% else %>
-              <%= link_to record_favorites_path(@record), method: :post, class: "favorite_btn" do %>
-                <i class="far fa-heart"></i>
-                <%= @record.favorites.count %> いいね
-              <% end %>
-            <% end %>
-           <!--ここまで、いいね機能--->
+
+
+          <div id="favorite_btn_<%= @record.id %>">
+            <%= render 'favorites/favorite', record: @record %>
+          </div>
+
           <% if @record.user == current_user %>
             <%= link_to '編集', edit_record_path(@record), class: "btn btn-success" %>
             <%= link_to '削除', record_path(@record), method: :delete, class: "btn btn-danger" %>
