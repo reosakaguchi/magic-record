@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_18_090323) do
+ActiveRecord::Schema.define(version: 2022_02_24_074231) do
+
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.string "body"
+    t.string "article_image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "article_status", default: 0, null: false
+    t.integer "user_id"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text "comment"
@@ -48,6 +58,14 @@ ActiveRecord::Schema.define(version: 2022_02_18_090323) do
     t.datetime "updated_at", null: false
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "remarks", force: :cascade do |t|
+    t.text "remark"
+    t.integer "user_id"
+    t.integer "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

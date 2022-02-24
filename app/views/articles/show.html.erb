@@ -1,0 +1,44 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title"><%= @article.title %></h4>
+          <p class="card-text"><%= @article.body %></p>
+          <p class="card-text">
+            <small class="text-muted">更新日：<%= @article.updated_at.strftime("%Y-%m-%d") %></small>
+          </p>
+          <% if @article.user == current_user %>
+            <%= link_to '編集', edit_article_path(@article), class: "btn btn-success" %>
+            <%= link_to '削除', article_path(@article), method: :delete, class: "btn btn-danger" %>
+          <% end %>
+          <div class="comments ml-5 mt-5">
+            <%= form_with(model:[@article, @remark], local: true) do |f| %>
+            <%= f.text_area :remark, :size=>"60x3",placeholder: "コメントする" %>
+            <%= f.submit "送信する", class: "btn btn-success mb-4" %>
+            <% end %>
+            <div class="text-secondary">
+              <p>コメント件数：<%= @remarks.count %></p>
+            </div>
+            <% @remarks.each do |remark| %>
+      	    <div class="comments-index mb-2">
+      	        <div class="text-secondary">
+                  <%= remark.user.name %>
+                  <%= remark.created_at.strftime('%Y/%m/%d') %><br>
+      	        </div>
+              <div class="d-flex">
+                <%= remark.remark %>
+                <% if remark.user == current_user %>
+                <div class="comment-delete">
+                  <%= link_to "削除", article_remark_path(remark.article, remark), method: :delete, class: "btn-sm btn-danger" %>
+                </div>
+                <% end %>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

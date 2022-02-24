@@ -14,3 +14,8 @@ ja:
       gender_status:
         man:            男性
         woman:          女性
+    article:
+      article_status:
+        information:    サークル内報告
+        learning:       マジックについて
+        qanda:          Ｑ＆Ａ

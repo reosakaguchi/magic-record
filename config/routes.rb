@@ -11,4 +11,12 @@ Rails.application.routes.draw do
     resources :comments, only:[:create, :destroy]
     resource :favorites, only:[:create, :destroy]
   end
+  resources :articles do
+    resources :remarks, only:[:create, :destroy]
+    collection do
+      get 'information'
+      get 'learning'
+      get 'qanda'
+    end
+  end
 end

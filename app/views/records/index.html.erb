@@ -7,31 +7,31 @@
        <%= f.submit '検索する', name: nil %>
       <% end %>
     </div>
-      <table class="table table-hover">
-        <thead class="thead-dark">
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">マジックレポート一覧</th>
+          <th scope="col">使用したマジック</th>
+          <th scope="col">演技時間</th>
+          <th scope="col">演じた相手</th>
+          <th scope="col">いいね数</th>
+          <th scope="col">コメント数</th>
+          <th scope="col">投稿者</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @records.each do |record| %>
           <tr>
-            <th scope="col">マジックレポート一覧</th>
-            <th scope="col">使用したマジック</th>
-            <th scope="col">演技時間</th>
-            <th scope="col">演じた相手</th>
-            <th scope="col">いいね数</th>
-            <th scope="col">コメント数</th>
-            <th scope="col">投稿者</th>
+            <td><%= link_to record.title, record_path(record) %></td>
+            <td><%= link_to record.magic_name, record_path(record) %></td>
+            <td><%= record.audience_status_i18n %></td>
+            <td><%= record.time_status_i18n %></td>
+            <td><%= "#{record.favorites.count}いいね" %></td>
+            <td><p class="caption"><%= "#{record.comments.count} コメント" %></p></td>
+            <td><%= link_to record.user.name, user_path(record.user_id)%></td>
           </tr>
-        </thead>
-        <tbody>
-          <% @records.each do |record| %>
-            <tr>
-              <td><%= link_to record.title, record_path(record) %></td>
-              <td><%= link_to record.magic_name, record_path(record) %></td>
-              <td><%= record.audience_status_i18n %></td>
-              <td><%= record.time_status_i18n %></td>
-              <td><%= "#{record.favorites.count}いいね" %></td>
-              <td><p class="caption"><%= "#{record.comments.count} コメント" %></p></td>
-              <td><%= link_to record.user.name, user_path(record.user_id)%></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </div>
+        <% end %>
+      </tbody>
     </div>
   </div>
+</div>
