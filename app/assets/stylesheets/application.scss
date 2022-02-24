@@ -15,3 +15,14 @@
  */
 
 @import "bootstrap";
+
+.profile_image {
+ border-radius: 50%;
+}
+
+.top-image {
+	height: 600px;
+	background-image: url(top.png);
+	background-repeat: none;
+	background-size:100%;
+}
