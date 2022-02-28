@@ -8,7 +8,7 @@
           <p class="card-text">
             <small class="text-muted">更新日：<%= @article.updated_at.strftime("%Y-%m-%d") %></small>
           </p>
-          <% if @article.user == current_user %>
+          <% if current_user.admin? && current_user == @article.user %>
             <%= link_to '編集', edit_article_path(@article), class: "btn btn-success" %>
             <%= link_to '削除', article_path(@article), method: :delete, class: "btn btn-danger" %>
           <% end %>

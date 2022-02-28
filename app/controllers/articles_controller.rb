@@ -1,4 +1,7 @@
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :information, :learning, :qanda ]
+  before_action :admin_user, except: [:index, :information, :learning, :qanda, :show]
+  
   def index
     @articles = Article.all
   end
@@ -60,5 +63,9 @@ class ArticlesController < ApplicationController
   private
   def article_params
     params.require(:article).permit(:title, :body, :article_status, :article_iamge)
+  end
+  # トップ画面にりダイレクトする。後で変更する。
+  def admin_user
+    redirect_to root_path unless current_user.admin?
   end
 end

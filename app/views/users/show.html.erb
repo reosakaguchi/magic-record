@@ -7,10 +7,19 @@
            <%= attachment_image_tag @user, :profile_image, size: '100x100', fallback: "no_image.png", class: "mb-3 mt-3 ml-3 profile-img" %>
            <h4 class="ml-5 m-3"><%= @user.profile %></h4>
           </div>
-          <h5 class="card-title"><%= current_user.name %></h5>
-          <h6 class="card-subtitle mb-2 text-muted"><%= current_user.email %></h6>
+          <h5 class="card-title"><%= @user.name %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= @user.email %></h6>
           <h7><%= simple_format(current_user.gender_status_i18n) %></h5>
+          
+          <% if current_user == @user %>
           <%= link_to 'ユーザー編集', edit_user_path %>
+          <% end %>
+          <% if current_user.admin? && current_user == @user %>
+          <%= simple_format link_to 'ユーザー管理画面', admin_users_path %>
+          <%= simple_format link_to '記事の作成', new_article_path %>
+          <% end %>
+          
+          
            <p class="d-flex justify-content-end">
              <% if user_signed_in? && @user == current_user %>
                <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn-sm btn-success" %>
