@@ -2,8 +2,14 @@
   <strong class="is-size-1" style="font-family: cursive;">magic-record</strong></strong>
 </p>
 <br>
-<%= link_to "ログイン", new_user_session_path %>
-<br>
-<%= link_to "新規登録", new_user_registration_path %>
-<br>
-<div class="top-image"></div>
+
+<% if user_signed_in? %>
+  <a>さっそく投稿してみる。</a><br>
+  <%= link_to '新規投稿', new_record_path, class: "nav-link" %>
+<% else %>
+  <%= link_to "ログイン", new_user_session_path %>
+  <br>
+  <%= link_to "新規登録", new_user_registration_path %>
+<% end %>
+  <br>
+  <div class="top-image"></div>

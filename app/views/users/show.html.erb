@@ -12,14 +12,13 @@
           <h7><%= simple_format(current_user.gender_status_i18n) %></h5>
           
           <% if current_user == @user %>
-          <%= link_to 'ユーザー編集', edit_user_path %>
+            <%= link_to 'ユーザー編集', edit_user_path %>
           <% end %>
           <% if current_user.admin? && current_user == @user %>
-          <%= simple_format link_to 'ユーザー管理画面', admin_users_path %>
-          <%= simple_format link_to '記事の作成', new_article_path %>
+            <%= simple_format link_to 'ユーザー管理画面', admin_users_path %>
+            <%= simple_format link_to '記事の作成', new_article_path %>
           <% end %>
-          
-          
+
            <p class="d-flex justify-content-end">
              <% if user_signed_in? && @user == current_user %>
                <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn-sm btn-success" %>

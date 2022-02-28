@@ -4,6 +4,7 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title"><%= @article.title %></h4>
+          <p class="card-text"><%= attachment_image_tag @article, :article_image, size: '100x100', fallback: "no_image.png", class: "mb-3 mt-3 ml-3 profile-img" %></p>
           <p class="card-text"><%= @article.body %></p>
           <p class="card-text">
             <small class="text-muted">更新日：<%= @article.updated_at.strftime("%Y-%m-%d") %></small>

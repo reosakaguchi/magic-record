@@ -1,37 +1,29 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-10 mx-auto">
-    <div class="row justify-content-end mb-3">
-      <%= form_with url: records_path, method: :get, local: true do |f| %>
-       <%= f.text_field :search %>
-       <%= f.submit '検索する', name: nil %>
-      <% end %>
+<section class="container mt-5">
+  <h1 class="text-center">投稿一覧</h1>
+</section>
+
+<section class="container mt-5">
+  <% @records.each do |record| %>
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-user-alt"></i> <%= link_to record.user.name, user_path(record.user_id)%></h6>
+        <h5 class="card-title"><%= link_to record.title, record_path(record) %></h5>
+        <div class="row">
+          <p class="col-6">
+            <small class="text-muted">使用したマジック：<%= record.magic_name %></small>
+          </p>
+          <p class="col-2">
+            <small class="text-muted"><i class="fas fa-users"></i> 観客：<%= record.audience_status_i18n %></small>
+          </p>
+          <p class="col-4">
+            <small class="text-muted"><i class="far fa-clock"></i> 演技時間：<%= record.time_status_i18n %></small>
+          </p>
+        </div>
+        <a class="card-text">
+          <small class="text-muted"><i class="far fa-heart"></i><%= " #{record.favorites.count}いいね　" %>
+          <i class="far fa-comment-dots"></i><%= " #{record.comments.count}コメント"%></small>
+        </a>
+      </div>
     </div>
-    <table class="table table-hover">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">マジックレポート一覧</th>
-          <th scope="col">使用したマジック</th>
-          <th scope="col">演技時間</th>
-          <th scope="col">演じた相手</th>
-          <th scope="col">いいね数</th>
-          <th scope="col">コメント数</th>
-          <th scope="col">投稿者</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @records.each do |record| %>
-          <tr>
-            <td><%= link_to record.title, record_path(record) %></td>
-            <td><%= link_to record.magic_name, record_path(record) %></td>
-            <td><%= record.audience_status_i18n %></td>
-            <td><%= record.time_status_i18n %></td>
-            <td><%= "#{record.favorites.count}いいね" %></td>
-            <td><p class="caption"><%= "#{record.comments.count} コメント" %></p></td>
-            <td><%= link_to record.user.name, user_path(record.user_id)%></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </div>
-  </div>
-</div>
+  <% end %>
+</section>

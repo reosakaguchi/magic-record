@@ -62,9 +62,9 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:title, :body, :article_status, :article_iamge)
+    params.require(:article).permit(:title, :body, :article_status, :article_image)
   end
-  # トップ画面にりダイレクトする。後で変更する。
+  # トップ画面にリダイレクトする。後で変更する。
   def admin_user
     redirect_to root_path unless current_user.admin?
   end

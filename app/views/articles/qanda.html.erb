@@ -1,11 +1,4 @@
-<section class="hero is-success">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        Ｑ＆Ａ
-      </h1>
-    </div>
-  </div>
+<section class="container mt-5">
+  <h1 class="text-center">Ｑ＆Ａの記事一覧</h1>
+  <%= render 'index', articles: @articles %>
 </section>
-
-<%= render 'index', articles: @articles %>

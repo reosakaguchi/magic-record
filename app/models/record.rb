@@ -4,8 +4,8 @@ class Record < ApplicationRecord
   has_many :favorites, dependent: :destroy
   
   with_options presence: true do
-    validates :title, length: { maximum: 20 }
-    validates :magic_name, length: { maximum: 20 }
+    validates :title, length: { maximum: 50 }
+    validates :magic_name, length: { maximum: 25 }
     validates :body
   end
   
