@@ -5,7 +5,7 @@
         <div class="card-body">
           <h4 class="card-title"><%= @article.title %></h4>
           <p class="card-text"><%= attachment_image_tag @article, :article_image, size: '100x100', fallback: "no_image.png", class: "mb-3 mt-3 ml-3 profile-img" %></p>
-          <p class="card-text"><%= @article.body %></p>
+          <p class="card-text"><%= safe_join(@article.body.split("\n"),tag(:br)) %></p>
           <p class="card-text">
             <small class="text-muted">更新日：<%= @article.updated_at.strftime("%Y-%m-%d") %></small>
           </p>
@@ -30,7 +30,7 @@
                       <%= remark.created_at.strftime('%Y/%m/%d') %><br>
           	        </div>
           	       <div class="d-flex">
-                    <%= remark.remark %>
+                    <%= safe_join(remark.remark.split("\n"),tag(:br)) %>
                     <% if remark.user == current_user %>
                     <div class="comment-delete">
                       <%= link_to "削除", article_remark_path(remark.article, remark), method: :delete, class: "btn-sm btn-danger" %>

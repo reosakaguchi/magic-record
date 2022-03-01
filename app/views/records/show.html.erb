@@ -12,7 +12,7 @@
           <p class="card-text">
             <small class="text-muted">投稿者：<%= @record.user.name %> (<%= @record.user.gender_status_i18n %>)　｜　演技時間：<%= @record.time_status_i18n %>　｜　演じた相手：<%= @record.audience_status_i18n %></small>
           </p>
-          <p class="card-text"><%= @record.body %></p>
+          <p class="card-text"><%= safe_join(@record.body.split("\n"),tag(:br)) %></p>
           <p class="card-text">
             <small class="text-muted">更新日：<%= @record.updated_at.strftime("%Y-%m-%d") %></small>
           </p>

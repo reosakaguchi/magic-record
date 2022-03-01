@@ -5,11 +5,11 @@
         <div class="card-body">
          <div class="d-flex">
            <%= attachment_image_tag @user, :profile_image, size: '100x100', fallback: "no_image.png", class: "mb-3 mt-3 ml-3 profile-img" %>
-           <h4 class="ml-5 m-3"><%= @user.profile %></h4>
+           <h4 class="ml-5 m-3"><%= simple_format @user.profile %></h4>
           </div>
           <h5 class="card-title"><%= @user.name %></h5>
           <h6 class="card-subtitle mb-2 text-muted"><%= @user.email %></h6>
-          <h7><%= simple_format(current_user.gender_status_i18n) %></h7>
+          <h7><%= simple_format current_user.gender_status_i18n %></h7>
           <div class="row">
             <div class="col">
               <% if current_user.admin? && current_user == @user %>
@@ -51,7 +51,7 @@
 </section>
 
 <section class="container my-5">
-  <% @user.records.each do |record| %>
+  <% @user.records.reverse_each do |record| %>
     <div class="card mt-3">
       <div class="card-body">
         <h5 class="card-title"><%= link_to record.title, record_path(record) %></h5>

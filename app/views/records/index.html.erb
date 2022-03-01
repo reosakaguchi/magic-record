@@ -4,7 +4,7 @@
 </section>
 
 <section class="container my-5">
-  <% @records.each do |record| %>
+  <% @records.reverse_each do |record| %>
     <div class="card mt-3">
       <div class="card-body">
         <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-user-alt"></i> <%= link_to record.user.name, user_path(record.user_id)%></h6>
