@@ -1,10 +1,11 @@
 <section class="container mt-5">
   <h1 class="text-center">投稿一覧</h1>
+  <h6 class="text-center mt-3">マジックを演じた際に気づいたことや感じたことや知ったことについての記録です。みんなの記録を見てみましょう。</h6>
 </section>
 
-<section class="container mt-5">
+<section class="container my-5">
   <% @records.each do |record| %>
-    <div class="card">
+    <div class="card mt-3">
       <div class="card-body">
         <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-user-alt"></i> <%= link_to record.user.name, user_path(record.user_id)%></h6>
         <h5 class="card-title"><%= link_to record.title, record_path(record) %></h5>

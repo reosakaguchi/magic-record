@@ -24,5 +24,21 @@
 	height: 600px;
 	background-image: url(top.png);
 	background-repeat: none;
+	background-size: 100%;
+}
+
+.top-image {
+	height: 600px;
+	background-image: url(top.png);
+	background-repeat: none;
 	background-size:100%;
+}
+
+.comment-delete {
+  margin-left: auto;
+}
+
+body {
+  background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
+  font-family: sans-serif;
 }

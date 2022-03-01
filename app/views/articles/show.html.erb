@@ -1,6 +1,6 @@
-<div class="container mt-5">
+<div class="container my-5">
   <div class="row">
-    <div class="col-6 mx-auto">
+    <div class="col-12 mx-auto">
       <div class="card">
         <div class="card-body">
           <h4 class="card-title"><%= @article.title %></h4>
@@ -21,22 +21,25 @@
             <div class="text-secondary">
               <p>コメント件数：<%= @remarks.count %></p>
             </div>
-            <% @remarks.each do |remark| %>
-      	    <div class="comments-index mb-2">
-      	        <div class="text-secondary">
-                  <%= remark.user.name %>
-                  <%= remark.created_at.strftime('%Y/%m/%d') %><br>
-      	        </div>
-              <div class="d-flex">
-                <%= remark.remark %>
-                <% if remark.user == current_user %>
-                <div class="comment-delete">
-                  <%= link_to "削除", article_remark_path(remark.article, remark), method: :delete, class: "btn-sm btn-danger" %>
-                </div>
-                <% end %>
-              </div>
-            </div>
-            <% end %>
+            
+            <ul class="list-group list-group-flush">
+              <% @remarks.each do |remark| %>
+                <li class="list-group-item">
+                    <div class="text-secondary">
+                      <%= remark.user.name %>
+                      <%= remark.created_at.strftime('%Y/%m/%d') %><br>
+          	        </div>
+          	       <div class="d-flex">
+                    <%= remark.remark %>
+                    <% if remark.user == current_user %>
+                    <div class="comment-delete">
+                      <%= link_to "削除", article_remark_path(remark.article, remark), method: :delete, class: "btn-sm btn-danger" %>
+                    </div>
+                    <% end %>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
           </div>
         </div>
       </div>
