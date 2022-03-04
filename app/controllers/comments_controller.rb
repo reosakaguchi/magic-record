@@ -1,21 +1,23 @@
 class CommentsController < ApplicationController
   
   def create
-    record = Record.find(params[:record_id])
+    @record = Record.find(params[:record_id])
     @comment = current_user.comments.new(comment_params)
-    @comment.record_id = record.id
+    @comment.record_id = @record.id
     if @comment.save
-      redirect_to record_path(record)
+      flash.now[:notice] = 'コメントを投稿しました'
+      render :record_comments  #render先にjsファイルを指定
     else
-      @record = Record.find(params[:record_id])
-      @comments = @record.comments
       render 'records/show'
     end
   end
   
   def destroy
     Comment.find_by(id: params[:id], record_id: params[:record_id]).destroy
-    redirect_to record_path(params[:record_id])
+    flash.now[:alert] = '投稿を削除しました'
+    #renderしたときに@recordのデータがないので@recordを定義
+    @record = Record.find(params[:record_id])
+    render :record_comments  #render先にjsファイルを指定
   end
   
   private

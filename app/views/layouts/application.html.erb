@@ -69,12 +69,9 @@
         </div>
       <% end %>
     </nav>
-    <% if flash[:notice] %>
-      <div class="alert alert-primary" role="alert"><strong><%= notice %></strong></div>
-    <% end %>
-    <% if flash[:alert] %>
-      <div class="alert alert-danger" role="alert"><strong><%= alert %></strong></div>
-    <% end %>
+    <div id="flash-message">
+      <%= render 'layouts/flash' %>
+    </div>
     <%= yield %>
   </body>
 </html>

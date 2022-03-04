@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     member do
       get :follows, :followers
     end
-    resource :relationships, only:[:create, :destroy]
+  resource :relationships, only:[:create, :destroy]
   end
   namespace :admin do
     resources :users, only:[:index, :destroy]
