@@ -22,13 +22,13 @@ class User < ApplicationRecord
   end
   
   # ユーザーをフォローする
-  def follow(user_id)
-    follower.create(followed_id: user_id)
+  def follow(user)
+    follower.create!(followed_id: user.id)
   end
 
   # ユーザーのフォローを外す
-  def unfollow(user_id)
-    follower.find_by(followed_id: user_id).destroy
+  def unfollow(user)
+    follower.find_by(followed_id: user.id).destroy
   end
 
   validates :name, presence: true

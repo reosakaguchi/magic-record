@@ -2,4 +2,4 @@
 $("#comments_area").html("<%= j(render 'comments/record_comments', record: @record, comment: @comment) %>");
 <!--フォームを送信したあとにフォームの値を空にします-->
 $("textarea").val('');
-$('#flash-message').html("<%= j(render 'layouts/flash') %>");
+$("#flash-message").html("<%= j(render 'layouts/flash') %>");
