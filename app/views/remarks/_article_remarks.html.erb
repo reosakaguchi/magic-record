@@ -1,0 +1,21 @@
+<div class="text-secondary">
+  <p>意見・コメント件数：<%= article.remarks.count %></p>
+</div>
+<ul class="list-group list-group-flush">
+  <% article.remarks.each do |remark| %>
+    <li class="list-group-item">
+        <div class="text-secondary">
+          <%= remark.user.name %>
+          <%= remark.created_at.strftime('%Y/%m/%d') %><br>
+        </div>
+       <div class="d-flex">
+        <%= safe_join(remark.remark.split("\n"),tag(:br)) %>
+        <% if remark.user == current_user %>
+        <div class="comment-delete">
+          <%= link_to "削除", article_remark_path(remark.article, remark), method: :delete, remote: true, class: "btn-sm btn-danger", data: {confirm: "本当に削除しますか？"} %>
+        </div>
+        <% end %>
+      </div>
+    </li>
+  <% end %>
+</ul>

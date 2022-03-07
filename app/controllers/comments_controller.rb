@@ -6,9 +6,9 @@ class CommentsController < ApplicationController
     @comment.record_id = @record.id
     if @comment.save
       flash.now[:notice] = 'コメントを投稿しました'
-      render :record_comments  #render先にjsファイルを指定
+      render :record_comments
     else
-      render 'records/show'
+      render :error
     end
   end
   
@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
     flash.now[:alert] = '投稿を削除しました'
     #renderしたときに@recordのデータがないので@recordを定義
     @record = Record.find(params[:record_id])
-    render :record_comments  #render先にjsファイルを指定
+    render :record_comments
   end
   
   private

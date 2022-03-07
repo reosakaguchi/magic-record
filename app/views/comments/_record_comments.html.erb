@@ -2,20 +2,20 @@
   <p>コメント件数：<%= record.comments.count %></p>
 </div>
 <ul class="list-group list-group-flush">
-<% record.comments.each do |comment| %>
-  <li class="list-group-item">
-      <div class="text-secondary">
-        <%= comment.user.name %>
-        <%= comment.created_at.strftime('%Y/%m/%d') %><br>
+  <% record.comments.each do |comment| %>
+    <li class="list-group-item">
+        <div class="text-secondary">
+          <%= comment.user.name %>
+          <%= comment.created_at.strftime('%Y/%m/%d') %><br>
+        </div>
+      <div class="d-flex">
+        <%= safe_join(comment.comment.split("\n"),tag(:br)) %>
+        <% if comment.user == current_user %>
+        <div class="comment-delete">
+          <%= link_to "削除", record_comment_path(comment.record, comment), method: :delete, remote: true, class: "btn-sm btn-danger", data: {confirm: "本当に削除しますか？"} %>
+        </div>
+        <% end %>
       </div>
-    <div class="d-flex">
-      <%= comment.comment %>
-      <% if comment.user == current_user %>
-      <div class="comment-delete">
-        <%= link_to "削除", record_comment_path(comment.record, comment), method: :delete, remote: true, class: "btn-sm btn-danger", data: {confirm: "本当に削除しますか？"} %>
-      </div>
-      <% end %>
-    </div>
-  </li>
+    </li>
   <% end %>
 </ul>

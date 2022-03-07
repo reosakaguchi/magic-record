@@ -1,5 +1,5 @@
-$("#comments_area").html("<%= j(render 'comments/record_comments', record: @record, comment: @comment) %>");
+$("#remarks_area").html("<%= j(render 'remarks/article_remarks', article: @article, remark: @remark) %>");
 $("textarea").val('');
 $("#flash-message").html("<%= j(render 'layouts/flash') %>");
 <!--投稿失敗時に表示されるエラーメッセージを削除する-->
-$("#comments_error").html("");
+$("#remarks_error").html("");

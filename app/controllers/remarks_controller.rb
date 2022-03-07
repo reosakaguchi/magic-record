@@ -1,16 +1,23 @@
 class RemarksController < ApplicationController
   
   def create
-    article = Article.find(params[:article_id])
-    remark = current_user.remarks.new(remark_params)
-    remark.article_id = article.id
-    remark.save
-    redirect_to article_path(article)
+    @article = Article.find(params[:article_id])
+    @remark = current_user.remarks.new(remark_params)
+    @remark.article_id = @article.id
+    if @remark.save
+      flash.now[:notice] = 'コメントを投稿しました'
+      render :article_remarks
+    else
+      render :error
+    end
   end
 
   def destroy
     Remark.find_by(id: params[:id], article_id: params[:article_id]).destroy
-    redirect_to article_path(params[:article_id])
+    flash.now[:alert] = '投稿を削除しました'
+    #renderしたときに@articleのデータがないので@articleを定義
+    @article = Article.find(params[:article_id])
+    render :article_remarks
   end
 
   private
