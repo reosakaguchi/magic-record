@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
     @comment.record_id = @record.id
     if @comment.save
-      flash.now[:notice] = 'コメントを投稿しました'
+      flash.now[:notice] = '投稿に成功しました。'
       render :record_comments
     else
       render :error
@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
   
   def destroy
     Comment.find_by(id: params[:id], record_id: params[:record_id]).destroy
-    flash.now[:alert] = '投稿を削除しました'
+    flash.now[:notice] = '投稿を削除しました。'
     #renderしたときに@recordのデータがないので@recordを定義
     @record = Record.find(params[:record_id])
     render :record_comments

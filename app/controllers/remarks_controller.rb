@@ -5,7 +5,7 @@ class RemarksController < ApplicationController
     @remark = current_user.remarks.new(remark_params)
     @remark.article_id = @article.id
     if @remark.save
-      flash.now[:notice] = 'コメントを投稿しました'
+      flash.now[:notice] = '投稿に成功しました。'
       render :article_remarks
     else
       render :error
@@ -14,7 +14,7 @@ class RemarksController < ApplicationController
 
   def destroy
     Remark.find_by(id: params[:id], article_id: params[:article_id]).destroy
-    flash.now[:alert] = '投稿を削除しました'
+    flash.now[:notice] = '投稿を削除しました。'
     #renderしたときに@articleのデータがないので@articleを定義
     @article = Article.find(params[:article_id])
     render :article_remarks
