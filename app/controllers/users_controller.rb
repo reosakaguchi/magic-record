@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :admin_user, only: [:destroy]
   def index
-    @users = User.all
+    @users = User.preload(:records)
   end
   
   def show
@@ -9,7 +10,10 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = current_user 
+    @user = User.find(params[:id])
+    if @user != current_user
+        redirect_to user_path(current_user), alert: "不正なアクセスです。"
+    end
   end
   
   def update
@@ -28,12 +32,12 @@ class UsersController < ApplicationController
   end
   
   def follows
-    @user = User.find(params[:id])
+    @user  = User.find(params[:id])
     @users = @user.following_user.reverse_order
   end
   
   def followers
-    @user = User.find(params[:id])
+    @user  = User.find(params[:id])
     @users = @user.follower_user.reverse_order
   end
   

@@ -1,6 +1,6 @@
 <%= form_for article do |f| %>
   <div class="form-group">
-    <label>何のカテゴリーですか？</label><br>
+    <label>何のカテゴリーの記事ですか？</label><br>
     <%= f.select :article_status, Article.article_statuses.keys.map { |k| [t("enums.article.article_status.#{k}"),k]}, {}, {class: "custom-select w-25"} %>
   </div>
   <div class="form-group">

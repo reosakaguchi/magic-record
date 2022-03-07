@@ -1,14 +1,13 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :information, :learning, :qanda ]
+  before_action :authenticate_user!
   before_action :admin_user, except: [:index, :information, :learning, :qanda, :show]
-  
   def index
-    @articles = Article.all
+    @articles = Article.preload(:remarks)
   end
 
   def show
     @article = Article.find(params[:id])
-    @remark = Remark.new
+    @remark  = Remark.new
     @remarks = @article.remarks
   end
 
@@ -28,7 +27,7 @@ class ArticlesController < ApplicationController
   
   def edit
     @article = Article.find(params[:id])
-    if @article.user_id != current_user.id #ログインしてたらアクセスできる
+    if @article.user_id != current_user.id
       redirect_to article_path, alert: '不正なアクセスです。'
     end
   end
@@ -49,23 +48,22 @@ class ArticlesController < ApplicationController
   end
   
   def information
-    @articles = Article.information
+    @articles = Article.information.preload(:remarks)
   end
 
   def learning
-    @articles = Article.learning
+    @articles = Article.learning.preload(:remarks)
   end
 
   def qanda
-    @articles = Article.qanda
+    @articles = Article.qanda.preload(:remarks)
   end  
 
   private
   def article_params
     params.require(:article).permit(:title, :body, :article_status, :article_image)
   end
-  # トップ画面にリダイレクトする。後で変更する。
   def admin_user
-    redirect_to root_path unless current_user.admin?
+    redirect_to root_path, alert: '不正なアクセスです。' unless current_user.admin?
   end
 end

@@ -11,7 +11,7 @@
         <h5 class="card-title"><%= link_to record.title, record_path(record) %></h5>
         <div class="row">
           <p class="col-6">
-            <small class="text-muted">使用したマジック：<%= record.magic_name %></small>
+            <small class="text-muted">演じたマジック：<%= record.magic_name %></small>
           </p>
           <p class="col-2">
             <small class="text-muted"><i class="fas fa-users"></i> 観客：<%= record.audience_status_i18n %></small>
@@ -21,8 +21,8 @@
           </p>
         </div>
         <a class="card-text">
-          <small class="text-muted"><i class="far fa-heart"></i><%= " #{record.favorites.count}いいね　" %>
-          <i class="far fa-comment-dots"></i><%= " #{record.comments.count}コメント"%></small>
+          <small class="text-muted"><i class="far fa-heart"></i><%= " #{record.favorites.size}いいね　" %>
+          <i class="far fa-comment-dots"></i><%= " #{record.comments.size}コメント"%></small>
         </a>
       </div>
     </div>

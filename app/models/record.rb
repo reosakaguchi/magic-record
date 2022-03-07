@@ -6,7 +6,7 @@ class Record < ApplicationRecord
   with_options presence: true do
     validates :title, length: { maximum: 50 }
     validates :magic_name, length: { maximum: 25 }
-    validates :body
+    validates :body, length: { maximum: 2000 }
   end
   
   def favorited_by?(user)

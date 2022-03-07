@@ -3,19 +3,15 @@
   <div class="row">
     <div class="col-6 mx-auto">
       <h2 class="mb-3">新規登録</h2>
-      
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      
         <div class="form-group">
           <%= f.label :name, "名前" %><br />
           <%= f.text_field :name, autofocus: true, class: "form-control" %>
         </div>
-      
         <div class="form-group">
           <%= f.label :email, "メールアドレス" %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
         </div>
-      
         <div class="form-group">
           <%= f.label :password, "パスワード" %>
           <% if @minimum_password_length %>
@@ -23,21 +19,19 @@
           <% end %><br />
           <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
         </div>
-      
         <div class="form-group">
           <%= f.label :password_confirmation, "パスワード（確認）" %><br />
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
         </div>
-        
         <div class="form-group">
           <%= f.label :gender_status, "性別" %><br />
           <%= f.select :gender_status, User.gender_statuses.keys.map { |k| [t("enums.user.gender_status.#{k}"),k]}, {}, {class: "custom-select w-25"} %>
         </div>
-      
         <div>
           <%= f.submit "新規登録", class: "btn btn-primary" %>
         </div>
       <% end %>
+      
       <div class="my-5">
         <p><span>---</span> 既に登録されていますか？ <span>---</span></p>
         <%= link_to "ログインはこちらから", new_user_session_path, class: "btn btn-secondary" %>

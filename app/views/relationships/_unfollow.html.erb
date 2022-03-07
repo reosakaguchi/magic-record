@@ -1,4 +1,4 @@
-<!-- フォロー解除ボタン ------------------------------------------------------------------>
+<!--フォロー解除ボタン-->
 <%= form_for(current_user, url: user_relationships_path(user), method: :delete, remote: true) do |f| %>
   <%= f.submit "フォロー解除", class: "btn-sm btn-danger" %>
 <% end %>

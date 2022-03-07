@@ -1,5 +1,5 @@
 <% if resource.errors.any? %>
-<div class="row justify-content-center text-danger">
+  <div class="alert alert-danger" role="alert">
   <div id="error_explanation">
     <h4>
       <%= I18n.t("errors.messages.not_saved",

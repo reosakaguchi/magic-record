@@ -1,8 +1,8 @@
 class RemarksController < ApplicationController
-  
+  before_action :authenticate_user!
   def create
     @article = Article.find(params[:article_id])
-    @remark = current_user.remarks.new(remark_params)
+    @remark  = current_user.remarks.new(remark_params)
     @remark.article_id = @article.id
     if @remark.save
       flash.now[:notice] = '投稿に成功しました。'
