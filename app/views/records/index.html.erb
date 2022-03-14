@@ -3,7 +3,14 @@
   <h6 class="text-center mt-3">マジックを演じた際に気づいたことや感じたことや知ったことについての記録です。みんなの記録を見てみましょう。</h6>
 </section>
 
+
 <section class="container my-5">
+<div class="row justify-content-end">
+  <%= form_with url: records_path, method: :get, local: true do |f| %>
+   <%= f.text_field :search %>
+   <%= f.submit '検索する', name: nil %>
+  <% end %>
+</div>
   <% @records.reverse_each do |record| %>
     <div class="card mt-3">
       <div class="card-body">
