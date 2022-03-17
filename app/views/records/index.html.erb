@@ -4,34 +4,36 @@
 </section>
 
 
-<section class="container my-5">
+<div class="container my-5">
 <div class="row justify-content-end">
   <%= form_with url: records_path, method: :get, local: true do |f| %>
    <%= f.text_field :search %>
    <%= f.submit '検索する', name: nil %>
   <% end %>
 </div>
-  <% @records.reverse_each do |record| %>
+  <% @records.each do |record| %>
     <div class="card mt-3">
       <div class="card-body">
-        <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-user-alt"></i> <%= link_to record.user.name, user_path(record.user_id)%></h6>
+        <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-user-alt"></i>&nbsp;<%= link_to record.user.name, user_path(record.user_id)%></h6>
         <h5 class="card-title"><%= link_to record.title, record_path(record) %></h5>
         <div class="row">
           <p class="col-6">
             <small class="text-muted">演じたマジック：<%= record.magic_name %></small>
           </p>
           <p class="col-2">
-            <small class="text-muted"><i class="fas fa-users"></i> 観客：<%= record.audience_status_i18n %></small>
+            <small class="text-muted"><i class="fas fa-users"></i>&nbsp;観客：<%= record.audience_status_i18n %></small>
           </p>
           <p class="col-4">
-            <small class="text-muted"><i class="far fa-clock"></i> 演技時間：<%= record.time_status_i18n %></small>
+            <small class="text-muted"><i class="far fa-clock"></i>&nbsp;演技時間：<%= record.time_status_i18n %></small>
           </p>
         </div>
         <a class="card-text">
-          <small class="text-muted"><i class="far fa-heart"></i><%= " #{record.favorites.size}いいね　" %>
-          <i class="far fa-comment-dots"></i><%= " #{record.comments.size}コメント"%></small>
+          <small class="text-muted"><i class="far fa-heart"></i>&nbsp;<%= "#{record.favorites.size}いいね" %>&emsp;
+          <i class="far fa-comment-dots"></i>&nbsp;<%= "#{record.comments.size}コメント"%></small>&emsp;
+          <small class="text-muted">更新日：<%= record.updated_at.strftime("%Y-%m-%d") %></small>
         </a>
       </div>
     </div>
   <% end %>
-</section>
+  <%= paginate @records %>
+</div>

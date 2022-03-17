@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!
   before_action :admin_user, except: [:index, :information, :learning, :qanda, :show]
   def index
-    @articles = Article.preload(:remarks)
+    @articles = Article.preload(:remarks).page(params[:page]).reverse_order
   end
 
   def show
@@ -48,15 +48,15 @@ class ArticlesController < ApplicationController
   end
   
   def information
-    @articles = Article.information.preload(:remarks)
+    @articles = Article.information.preload(:remarks).page(params[:page]).reverse_order
   end
 
   def learning
-    @articles = Article.learning.preload(:remarks)
+    @articles = Article.learning.preload(:remarks).page(params[:page]).reverse_order
   end
 
   def qanda
-    @articles = Article.qanda.preload(:remarks)
+    @articles = Article.qanda.preload(:remarks).page(params[:page]).reverse_order
   end  
 
   private

@@ -19,3 +19,9 @@ ja:
         information:    サークル内報告
         learning:       マジックについて
         qanda:          Ｑ＆Ａ
+  views:
+    pagination:
+      first: "≪"
+      previous: "<"
+      next: ">"
+      last: "≫"

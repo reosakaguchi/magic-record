@@ -1,7 +1,7 @@
 class RecordsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   def index
-    @records = Record.preload(:comments, :favorites).eager_load(:user)
+    @records = Record.preload(:comments, :favorites).eager_load(:user).page(params[:page]).reverse_order
     @records = @records.where("title like? OR magic_name like? OR body like?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%") if params[:search].present?
   end
 
