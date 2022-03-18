@@ -1,24 +1,41 @@
-# README
+# Maagic_record
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+大学のマジックサークルでマジックを演じた経験を共有するためのアプリケーションである。
 
-Things you may want to cover:
 
-* Ruby version
+## 機能一覧
 
-* System dependencies
+* 認証機能
 
-* Configuration
+* 記事のCRUD機能
 
-* Database creation
+* 記事に対するコメント機能
 
-* Database initialization
+* ページネーション機能
 
-* How to run the test suite
+* 検索機能
 
-* Services (job queues, cache servers, search engines, etc.)
+* フォローフォロワー機能
 
-* Deployment instructions
+* いいね機能
 
-* ...
+* 管理者ユーザーによるユーザー削除機能
+
+
+## 使用技術一覧
+
+* 認証機能にはdeviseを使用した。
+
+* 画像アップロードと画像加工にはそれぞれrefileとrefile-mini_magickを使用した。
+
+* デプロイはHerokuで行った。
+
+* いいね機能とフォローフォロワー機能と記事に対するコメント機能はajax処理を行い、非同期で行うようにした。記事に対するコメント機能ではコメント欄だけでなくエラーメッセージも非同期で行われる。
+
+* ページネーション機能はkaminariを使用した。
+
+* レイアウトにはbootstrapを使用した。
+
+* enumを用いて記事のカテゴリーやユーザーの性別を分類を行い、さらにenum_helpを使用してカテゴリーの名前を日本語で表示させられるようにした。
+
+* 管理者権限を持ったユーザーとそうでないユーザーをboolean型のadminカラムで分類した。
