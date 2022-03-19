@@ -73,3 +73,7 @@ gem 'enum_help'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'kaminari','~> 1.2.1'
+gem 'omniauth-twitter' #twitter認証
+gem 'omniauth-facebook' #facebook認証
+gem 'omniauth-google-oauth2' # google認証
+gem 'dotenv-rails' #環境変数の設定
